@@ -1,0 +1,30 @@
+body {
+    font-family: Tahoma;
+    font-size: 40px;
+    
+}
+
+.box {
+    flex-direction: row;
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    column-gap: 10px;
+}
+
+.item {
+    width: 100px;
+    height: 150px;
+    background-color: #eeeff2;
+    border-left: 10px dotted #D0D0FF;
+
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.item:hover {
+    background-color: yellow;
+}
+
+.special {position: fixed; bottom: 10px; right: 10px}
