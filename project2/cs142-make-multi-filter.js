@@ -1,3 +1,5 @@
+'use strict';
+
 function cs142MakeMultiFilter (originalArray) {
     var currentArray = originalArray.slice();
 
@@ -12,7 +14,7 @@ function cs142MakeMultiFilter (originalArray) {
                 newArray.push(currentArray[i]);
             }
         }
-        currentArray = newArray
+        currentArray = newArray;
 
         if (typeof callback === "function") {
             callback.call(originalArray, currentArray);
