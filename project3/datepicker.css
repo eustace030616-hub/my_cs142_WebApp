@@ -1,0 +1,54 @@
+  .calendar-header {
+      text-align: center;
+      font-weight: bold;
+      font-size: 16px;
+      margin-bottom: 8px;
+      padding: 4px;
+  }
+
+  .nav-btn {
+      cursor: pointer;
+      border: 1px solid #ccc;
+      background: #f5f5f5;
+      padding: 2px 10px;
+      margin: 0 8px;
+      font-size: 14px;
+      border-radius: 3px;
+  }
+
+  .nav-btn:hover {
+      background: #ddd;
+  }
+  
+  .calendar-grid {
+      border-collapse: collapse;
+      width: 100%;
+  }
+
+  .calendar-grid th {
+      font-size: 12px;
+      padding: 4px;
+      text-align: center;
+      border-bottom: 1px solid #ccc;
+  }
+
+  .calendar-cell {
+      text-align: center;
+      padding: 6px;
+      cursor: pointer;
+      border: 1px solid #eee;
+      font-size: 14px;
+  }
+
+  .calendar-cell:hover {
+      background: #e8f0fe;
+  }
+
+  .calendar-cell.other-month {
+      color: #ccc;
+      cursor: default;
+  }
+
+  .calendar-cell.other-month:hover {
+      background: transparent;
+  }
