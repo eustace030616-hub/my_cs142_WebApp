@@ -1,0 +1,49 @@
+.creative-header {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  cursor: pointer;
+  user-select: none;
+  transition: transform 0.15s ease;
+  gap: 16px;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #f8f9ff 0%, #eef1ff 100%);
+}
+
+.creative-header:active {
+  transform: scale(0.98);
+}
+
+.header-gif {
+  width: 80px;
+  height: auto;
+  border-radius: 12px;
+}
+
+.header-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.creative-header h1 {
+  margin: 0;
+  font-size: 1.8rem;
+}
+
+.header-subtitle {
+  margin: 4px 0 0;
+  font-size: 0.85rem;
+  color: #888;
+}
+
+.header-gif-mirror {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%) scaleX(-1);
+  width: 80px;
+  height: auto;
+  border-radius: 12px;
+  pointer-events: none;
+}

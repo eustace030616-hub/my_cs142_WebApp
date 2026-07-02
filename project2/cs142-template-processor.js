@@ -1,3 +1,4 @@
+// in this file, i used regex to find pattern, you should also check cs142-test-project2.js as well, in there i used (function(){}) IIFE to make global scope variable local so to pass test 3
 'use strict';
 
 function Cs142TemplateProcessor(template) {

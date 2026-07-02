@@ -1,3 +1,4 @@
+//this file demonstrates how javascript is written, you should note that function could be passed as string/int in js
 'use strict';
 
 function cs142MakeMultiFilter (originalArray) {
