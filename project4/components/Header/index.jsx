@@ -33,6 +33,9 @@ class Header extends React.Component {
             <header
                 className="creative-header"
                 onClick={this.handleClick}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => e.key === 'Enter' && this.handleClick()}
                 style={this.state.flashColor ? { background: this.state.flashColor } : undefined}
             >
                 <img

@@ -16,7 +16,7 @@ class States extends React.Component {
 
   handelInputChange = (event) => {
     this.setState({ substringInput: event.target.value });
-  }
+  };
   
   getFilteredStates() {
     const allStates = window.cs142models.statesModel();
@@ -24,8 +24,7 @@ class States extends React.Component {
     if (!this.state.substringInput) {
       return allStates;
     }
-    return allStates.filter(state =>
-      state.toLowerCase().includes(this.state.substringInput.toLowerCase()));
+    return allStates.filter(state => state.toLowerCase().includes(this.state.substringInput.toLowerCase()));
     
   }
 

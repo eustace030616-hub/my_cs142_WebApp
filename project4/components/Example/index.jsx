@@ -1,6 +1,5 @@
 import React from "react";
 import "./styles.css";
-import Header from "../Header";
 
 
 /**
@@ -10,6 +9,9 @@ import Header from "../Header";
 import Prism from "prismjs";
 import "prismjs/components/prism-jsx.js";
 import "../../node_modules/prismjs/themes/prism.css";
+
+import Header from "../Header";
+
 
 /* eslint-disable  react/jsx-one-expression-per-line */
 /* eslint-disable  react/destructuring-assignment */
