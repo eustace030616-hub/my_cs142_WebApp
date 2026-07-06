@@ -24,7 +24,7 @@ class UserDetail extends React.Component {
   componentDidUpdate(prevProps) {
     if (prevProps.match.params.userId !== this.props.match.params.userId) {
       const user = window.cs142models.userModel(this.props.match.params.userId);
-      this.setState({ user: user })
+      this.setState({ user: user });
     }
   }
 

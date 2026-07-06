@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { Grid, Typography, Paper } from "@mui/material";
+import { Grid, Paper } from "@mui/material";
 import { HashRouter, Route, Switch } from "react-router-dom";
 
 import "./styles/main.css";
