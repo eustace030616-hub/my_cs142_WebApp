@@ -4,11 +4,28 @@ import { Box } from "@mui/system";
 import { withRouter } from "react-router-dom";
 
 import "./styles.css";
+import fetchModel from "../../lib/fetchModelData";
 
 /**
  * Define TopBar, a React component of CS142 Project 5.
  */
 class TopBar extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      userList: [],
+      version: '',
+    };
+  }
+
+  componentDidMount() {
+      fetchModel('/user/list')
+      .then(response => this.setState({ userList: response.data}));
+
+      fetchModel('/test/info')
+      .then(response => this.setState({ version: response.data.__v}));
+    }
+
   getTitle() {
     const path = this.props.location.pathname;
 
@@ -17,8 +34,7 @@ class TopBar extends React.Component {
     if (match) {
       const userId = match[2];
       const user =
-        window.cs142models.userListModel &&
-        window.cs142models.userListModel().find((u) => u._id === userId);
+        this.state.userList.find((u) => u._id === userId);
 
       if (match[1] === "photos") {
         return user
@@ -52,6 +68,9 @@ class TopBar extends React.Component {
             sx={{ ml: "auto" }}
           >
             {this.getTitle()}
+          </Typography>
+          <Typography variant="caption" color="inherit" sx={{ ml:2}}>
+            version {this.state.version}
           </Typography>
         </Toolbar>
       </AppBar>

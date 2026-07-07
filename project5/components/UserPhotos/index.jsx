@@ -11,26 +11,34 @@ import {
 import { Link } from "react-router-dom";
 
 import "./styles.css";
-
+import fetchModel from "../../lib/fetchModelData";
 /**
  * Define UserPhotos, a React component of CS142 Project 5.
  */
 class UserPhotos extends React.Component {
   constructor(props) {
     super(props);
-    const userId = this.props.match.params.userId;
-    const photos = window.cs142models.photoOfUserModel(userId);
+    
     this.state = {
-      photos: photos,
+      photos: [],
       expandedPhotoId: null,
     };
+
+    const userId = this.props.match.params.userId;
+    fetchModel(`/photosOfUser/${userId}`)
+      .then(response => {
+        this.setState({ photos: response.data });
+      });
+
   }
 
   componentDidUpdate(prevProps) {
     if (prevProps.match.params.userId !== this.props.match.params.userId) {
       const userId = this.props.match.params.userId;
-      const photos = window.cs142models.photoOfUserModel(userId);
-      this.setState({ photos: photos, expandedPhotoId: null });
+      fetchModel(`/photosOfUser/${userId}`)
+      .then(response => {
+        this.setState({ photos: response.data });
+      });
     }
   }
 

@@ -12,13 +12,25 @@
  */
 function fetchModel(url) {
   return new Promise(function (resolve, reject) {
+    var xhr = new XMLHttpRequest();
     console.log(url);
-    setTimeout(() => reject(new Error(
-      { status: 501, statusText: "Not Implemented" })), 
-      0
-    );
     // On Success return:
     // resolve({data: getResponseObject});
+    xhr.open('GET', url);
+
+    xhr.onload = function() {
+      if (xhr.status === 200) {
+        resolve({data: JSON.parse(xhr.responseText)});
+      } else {
+        reject(new Error(xhr.statusText));
+      }
+    };
+
+    xhr.onerror = function() {
+      reject(new Error('Network Error'));
+    };
+
+    xhr.send();
   });
 }
 

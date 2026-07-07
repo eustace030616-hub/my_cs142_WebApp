@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 
 import "./styles.css";
+import fetchModel from "../../lib/fetchModelData";
 
 /**
  * Define UserDetail, a React component of CS142 Project 5.
@@ -10,21 +11,24 @@ import "./styles.css";
 class UserDetail extends React.Component {
   constructor(props) {
     super(props);
-    //get userId from URL
-    const userId = this.props.match.params.userId;
-
-    //get user from model with userId
-    const user = window.cs142models.userModel(userId);
-
+      
     this.state = {
-      user: user,
+      user: [],
     };
+
+    const userId = this.props.match.params.userId;
+    fetchModel(`/user/${userId}`)
+          .then(response => {
+            this.setState({ user: response.data });
+          });
   }
 
   componentDidUpdate(prevProps) {
     if (prevProps.match.params.userId !== this.props.match.params.userId) {
-      const user = window.cs142models.userModel(this.props.match.params.userId);
-      this.setState({ user: user });
+      fetchModel(`/user/${this.props.match.params.userId}`)
+          .then(response => {
+            this.setState({ user: response.data });
+          });
     }
   }
 
