@@ -3,6 +3,8 @@ import {
   Card,
   CardMedia,
   CardContent,
+  TextField,
+  Button,
   Typography,
   Grid,
   Box,
@@ -22,6 +24,7 @@ class UserPhotos extends React.Component {
       currentIndex: 0,
       showComments: false,
       photoOwner: null,
+      newComment: '',
     };
 
     var userId = this.props.match.params.userId;
@@ -121,6 +124,16 @@ class UserPhotos extends React.Component {
     this.props.history.push(newUrl);
   }
 
+  handlePostComment(photoId) {
+  axios.post(`/commentsOfPhotos/${photoId}`, { comment: this.state.newComment })
+    .then(response => {
+      var photos = [...this.state.photos];
+      var photo = photos.find(p => p._id === photoId);
+      photo.comments.push(response.data);  // ← complete object, push directly
+      this.setState({ photos: photos, newComment: "" });
+    });
+  }
+  
   renderGridView() {
     return (
       <Box
@@ -194,6 +207,22 @@ class UserPhotos extends React.Component {
                           -No Comment-
                         </Typography>
                       )}
+                    <Box sx={{ display: "flex", gap: 1, mt: 1 }}>
+                      <TextField
+                        size="small"
+                        fullWidth
+                        placeholder="Write a comment..."
+                        value={this.state.newComment}
+                        onChange={(e) => this.setState({ newComment: e.target.value })}
+                      />
+                      <Button
+                        variant="contained"
+                        size="small"
+                        onClick={() => this.handlePostComment(photo._id)}
+                      >
+                        Post
+                      </Button>
+                    </Box>
                   </Box>
                 )}
               </CardContent>

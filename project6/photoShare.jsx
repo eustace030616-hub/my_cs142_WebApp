@@ -11,6 +11,15 @@ import UserPhotos from "./components/UserPhotos";
 class PhotoShare extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      advancedFeatures: false,
+    };
+  }
+
+  handleToggleAdvanced() {
+    this.setState(function (prevState) {
+      return { advancedFeatures: !prevState.advancedFeatures };
+    });
   }
 
   render() {
@@ -19,28 +28,47 @@ class PhotoShare extends React.Component {
         <div>
           <Grid container spacing={2}>
             <Grid item xs={12}>
-              <TopBar />
+              <TopBar
+                advancedFeatures={this.state.advancedFeatures}
+                onToggleAdvanced={() => this.handleToggleAdvanced()}
+              />
             </Grid>
-            <div className="cs142-main-topbar-buffer" />
+            <div className="cs142-main-topbar-buffer" style={{ marginTop: 70 }} />
             <Grid item sm={3}>
-              <Paper className="cs142-main-grid-item">
+              <Paper
+                className="cs142-main-grid-item"
+                sx={{
+                  height: "calc(100vh - 85px)",
+                  overflow: "auto",
+                  minWidth: 200,
+                }}
+              >
                 <UserList />
               </Paper>
             </Grid>
             <Grid item sm={9}>
-              <Paper className="cs142-main-grid-item">
+              <Paper
+                className="cs142-main-grid-item"
+                sx={{
+                  height: "calc(100vh - 85px)",
+                  overflow: "auto",
+                }}
+              >
                 <Switch>
-                 
                   <Route
                     path="/users/:userId"
                     render={(props) => <UserDetail {...props} />}
                   />
                   <Route
                     path="/photos/:userId"
-                    render={(props) => <UserPhotos {...props} />}
+                    render={(props) => (
+                      <UserPhotos
+                        {...props}
+                        advancedFeatures={this.state.advancedFeatures}
+                      />
+                    )}
                   />
                   <Route path="/users" component={UserList} />
-
                 </Switch>
               </Paper>
             </Grid>

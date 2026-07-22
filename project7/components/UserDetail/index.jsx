@@ -35,7 +35,6 @@ class UserDetail extends React.Component {
     return (
       <div>
         <h2>{this.state.user.first_name} {this.state.user.last_name}</h2>
-        <Link to={`/photos/${this.props.match.params.userId}`}>View Photos</Link>
         <p>userId: {this.props.match.params.userId}</p>
         <p>Description: {this.state.user.description}</p>
         <p>Location: {this.state.user.location}</p>

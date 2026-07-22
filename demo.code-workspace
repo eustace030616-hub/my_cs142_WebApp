@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"path": "../../../../springboot demo/demo"
+		},
+		{
+			"path": "../MIT Java"
+		},
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"java.configuration.updateBuildConfiguration": "interactive"
+	}
+}

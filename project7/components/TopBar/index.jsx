@@ -1,5 +1,5 @@
 import React from "react";
-import { AppBar, Toolbar, Typography, Switch, FormControlLabel } from "@mui/material";
+import { AppBar, Toolbar, Typography, Switch, FormControlLabel, Button } from "@mui/material";
 import { Box } from "@mui/system";
 import { withRouter } from "react-router-dom";
 
@@ -22,6 +22,14 @@ class TopBar extends React.Component {
       axios.get('/test/info')
       .then(response => this.setState({ version: response.data.__v}));
     }
+
+  handleLogout() {
+    axios.post("/admin/logout")
+      .then(() => {
+        this.props.onLogout();
+      })
+      .catch(() => {});
+  }
 
   getTitle() {
     const path = this.props.location.pathname;
@@ -80,6 +88,16 @@ class TopBar extends React.Component {
             label="Advanced"
             sx={{ ml: 2, color: "inherit" }}
           />
+          {this.props.userIsLoggedIn && (
+            <Button
+              color="inherit"
+              size="small"
+              onClick={() => this.handleLogout()}
+              sx={{ ml: 2 }}
+            >
+              Logout
+            </Button>
+          )}
         </Toolbar>
       </AppBar>
     );

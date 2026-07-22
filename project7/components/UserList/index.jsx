@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import {
   Divider,
   List,
@@ -32,8 +32,12 @@ class UserList extends React.Component {
       <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
         {this.state.users.map(user => (
           <div key={user._id}>
-            <ListItemButton component={Link} to={`/photos/${user._id}`}>
-              <ListItemText primary={`${user.first_name} ${user.last_name}`}/>
+            <ListItemButton onClick={() => this.props.history.push(`/photos/${user._id}`)}>
+              <ListItemText>
+                <Link to={`/users/${user._id}`} onClick={(e) => e.stopPropagation()}>
+                  {user.first_name} {user.last_name}
+                </Link>
+              </ListItemText>
             </ListItemButton>
             <Divider variant="middle"/>
           </div>
@@ -44,4 +48,4 @@ class UserList extends React.Component {
   }
 }
 
-export default UserList;
+export default withRouter(UserList);
